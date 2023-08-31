@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Phone Hunting API</title>
+        <link href="https://cdn.jsdelivr.net/npm/daisyui@3.6.2/dist/full.css" rel="stylesheet" type="text/css" />
+        <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-white">
+        <header class="">
+                <!-- navbar -->
+                <div class="bg-sky-50 h-[600px] relative">
+                <div class="navbar py-6 container mx-auto">
+                        <div class="navbar-start">
+                          <a class="btn btn-ghost normal-case text-xl">Hot Gadgets</a>
+                        </div>
+                        
+                        <div class="navbar-end">
+                          <a class="btn">Sign Up</a>
+                        </div>
+                </div>
+                <div class="text-center text-black my-4">
+                        <h3 class="text-6xl font-extrabold mb-4">Apple Iphone 13 Pro Max</h3>
+                       <p class="text-lg text-[#706F6F] pb-10"> There are many variations of passages of Lorem Ipsum available, but the majority <br> have suffered alteration in some form, by injected humou.
+                       </p>
+                </div>
+                
+        </div>
+        <div class="absolute -mt-72 lg:px-56">
+                <div class="flex justify-center gap-x-14">
+                        <img src="images/left.png" class="max-w-[280px] max-h-[490px]">
+                        <img src="images/mid.png" class="max-w-[360px] max-h-[570px]">
+                        <img src="images/right.png" class="max-w-[280px] max-h-[490px]">
+                </div>
+        </div>
+        </header>
+        <main class="container mx-auto mt-80">
+                <!-- search result -->
+                <section class="">
+                        <div class="p-4 flex justify-center">
+                                <input id="search-filed" type="text" placeholder="search..."
+                                        class="input input-bordered w-full max-w-xs bg-gray-100" />
+                                <button class="btn btn-accent" onclick="handleSearch()">Search</button>
+                        </div>
+                </section>
+                <section>
+                        <div id="loading-spiner" class="text-center my-40 text-primary hidden">
+                                <span class="loading loading-bars loading-xs"></span>
+                                <span class="loading loading-bars loading-sm"></span>
+                                <span class="loading loading-bars loading-md"></span>
+                        </div>
+                        <div id="phone-container" class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+                        </div>
+                        <!-- show all button -->
+                        <div id="show-all-container" class="hidden text-center my-4">
+                                <button class="btn btn-secondary" onclick="handleShowAll()">
+                                        Show All
+                                </button>
+                        </div>
+                </section>
+                <!-- show details modal -->
+                <!-- Open the modal using ID.showModal() method -->
+                
+                <dialog id="show_details_modal" class="modal modal-bottom sm:modal-middle">
+                        <form method="dialog" class="modal-box">
+                                <figure id="phone-img">
+                                        <img src="" alt="">
+                                </figure>
+                                <h3 id="phone-name" class="font-bold text-lg"></h3>
+                                <p class="py-2"></p>
+                                <div class="modal-action">
+                                        <!-- if there is a button in form, it will close the modal -->
+                                        <button class="btn">Close</button>
+                                </div>
+                        </form>
+                </dialog>
+
+        </main>
+        <footer>
+
+        </footer>
+        <script src="phone.js"></script>
+
+</body>
+
+</html>
