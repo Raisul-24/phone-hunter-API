@@ -1,8 +1,14 @@
-const loadPhone = async (searchText='13',isShowAll) => {
+const loadPhone = async (searchText='apple',isShowAll) => {
         const res = await fetch(`https://openapi.programming-hero.com/api/phones?search=${searchText}`);
         const data = await res.json();
         // console.log(data.data);
         displayPhones(data.data, isShowAll);
+}
+const loadPhone2 = async (searchText='Apple',isShowAll) => {
+        const res = await fetch(`https://openapi.programming-hero.com/api/phones?search=${searchText}`);
+        const data = await res.json();
+        // console.log(data.data);
+        displayPhones2(data.data, isShowAll);
 }
 
 const displayPhones = (phones, isShowAll) => {
@@ -12,7 +18,7 @@ const displayPhones = (phones, isShowAll) => {
         phoneContainer.textContent ='';
         // display show all button
         const showAllButton = document.getElementById('show-all-container');
-        if(phones.length > 12 && !isShowAll){
+        if(phones.length > 15 && !isShowAll){
                 showAllButton.classList.remove('hidden');
         }
         else{
@@ -21,7 +27,7 @@ const displayPhones = (phones, isShowAll) => {
         // console.log("is show all",isShowAll);
         // display only first 12 phone if not show all
         if(!isShowAll){
-                phones = phones.slice(0,12);
+                phones = phones.slice(0,15);
         }
         // console.log(phones);
         phones.forEach(phone => {
@@ -35,8 +41,53 @@ const displayPhones = (phones, isShowAll) => {
         <img src="${phone.image}" alt="" class="rounded-xl" />
         </figure>
         <div class="card-body items-center text-center">
-                <h2 class="card-title">${phone.phone_name}</h2>
-                <p>If a dog chews shoes whose shoes does he choose?</p>
+                <h2 class="card-title text-black font-bold">${phone.phone_name}</h2>
+                <p>Seeing a Custom tag under device status usually means that your phone is rooted.</p>
+                <h1 class="text-xl font-extrabold text-black" >$999</h1>
+                <div class="card-actions">
+                        <button onclick="handleShowDetails('${phone.slug}')" class="btn btn-primary">Show Details</button>
+                </div>
+        </div>
+        `;
+        // 4.append Child
+        phoneContainer.appendChild(phoneCard); 
+        });
+        // hide loading spinner
+        toggleLoadingSpinner(false);
+}
+const displayPhones2 = (phones, isShowAll) => {
+        // 1. connect by id
+        const phoneContainer = document.getElementById('phone-container2');
+        // clear phone container card before adding new cards
+        phoneContainer.textContent ='';
+        // display show all button
+        const showAllButton = document.getElementById('show-all-container2');
+        if(phones.length > 15 && !isShowAll){
+                showAllButton.classList.remove('hidden');
+        }
+        else{
+                showAllButton.classList.add('hidden');
+        }
+        // console.log("is show all",isShowAll);
+        // display only first 12 phone if not show all
+        if(!isShowAll){
+                phones = phones.slice(0,15);
+        }
+        // console.log(phones);
+        phones.forEach(phone => {
+                // console.log(phone);
+                //2. create a div
+                const phoneCard = document.createElement('div');
+                phoneCard.classList = `card bg-gray w-96 shadow-xl my-10 p-10 border-2 border-[#CFCFCF]`;
+                // 3. set innner HTML
+                phoneCard.innerHTML = `
+        <figure class="pt-10 bg-sky-100 pb-10">
+        <img src="${phone.image}" alt="" class="rounded-xl" />
+        </figure>
+        <div class="card-body items-center text-center">
+                <h2 class="card-title text-black font-bold">${phone.phone_name}</h2>
+                <p>Seeing a Custom tag under device status usually means that your phone is rooted.</p>
+                <h1 class="text-xl font-extrabold text-black">$999</h1>
                 <div class="card-actions">
                         <button onclick="handleShowDetails('${phone.slug}')" class="btn btn-primary">Show Details</button>
                 </div>
@@ -56,6 +107,7 @@ const handleShowDetails = async (id) =>{
         const data = await res.json();
         // console.log(data);
         showPhoneDetails(data.data);
+        
 
 }
 // handle show details about phone
@@ -84,6 +136,7 @@ const handleSearch = (isShowAll) =>{
         const searchText = searchFiled.value;
         console.log(searchText);
         loadPhone(searchText,isShowAll);
+        loadPhone2(searchText,isShowAll)
 }
 
 // loading 
@@ -102,3 +155,4 @@ const handleShowAll = () =>{
 }
 
  loadPhone()
+ loadPhone2()
